@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="max-w-lg mx-auto relative bg-white">
           <Navbar />
-          <div className="h-screen flex justify-center p-6">{children}</div>
+          <div className="h-screen p-6">{children}</div>
         </main>
       </body>
     </html>
