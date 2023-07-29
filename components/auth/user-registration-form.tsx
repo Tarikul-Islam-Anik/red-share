@@ -78,7 +78,16 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               <SelectWithLabel
                 label="Blood Group"
                 placeholder="Select Blood Group"
-                values={["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]}
+                values={[
+                  "A (+ve)",
+                  "A (-ve)",
+                  "B (+ve)",
+                  "B (-ve)",
+                  "AB (+ve)",
+                  "AB (-ve)",
+                  "O (+ve)",
+                  "O (-ve)",
+                ]}
                 required
               />
             )}
