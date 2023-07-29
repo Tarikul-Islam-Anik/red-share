@@ -100,7 +100,7 @@ const Feeds = () => {
   return (
     <Tabs
       defaultValue="blood-group"
-      className="space-y-6 w-[300px] sm:w-[350px] mx-auto"
+      className="w-[300px] sm:w-[350px] mx-auto"
       onValueChange={(value) => {
         if (value === "blood-group") {
           setFilter(requests.filter((request) => request.bloodType === "O+"));
@@ -118,7 +118,7 @@ const Feeds = () => {
       </TabsList>
 
       <TabsContent value="blood-group">
-        <ScrollArea className="h-[82vh] pr-4">
+        <ScrollArea className="h-[83vh]" hideScrollbar>
           {filter.map((request, index) => (
             <RequestCard className="my-4" key={index} {...request} />
           ))}
@@ -126,7 +126,7 @@ const Feeds = () => {
       </TabsContent>
 
       <TabsContent value="urgent">
-        <ScrollArea className="h-[82vh] pr-4">
+        <ScrollArea className="h-[83vh]" hideScrollbar>
           {filter.map((request, index) => (
             <RequestCard className="my-4" key={index} {...request} />
           ))}
@@ -134,7 +134,7 @@ const Feeds = () => {
       </TabsContent>
 
       <TabsContent value="show-all">
-        <ScrollArea className="h-[82vh] pr-4">
+        <ScrollArea className="h-[83vh]" hideScrollbar>
           {filter.map((request, index) => (
             <RequestCard className="my-4" key={index} {...request} />
           ))}
