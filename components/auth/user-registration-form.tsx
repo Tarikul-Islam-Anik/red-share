@@ -66,7 +66,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoComplete="address"
               disabled={isLoading}
               required
-              className="w-[290px]"
             />
             <RadioGroupWithLabel
               label="Siging up as: "
