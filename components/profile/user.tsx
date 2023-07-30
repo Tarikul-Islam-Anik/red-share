@@ -18,8 +18,19 @@ const User = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>John Doe</CardTitle>
-        <CardDescription>Lives in Dhaka, Bangladesh.</CardDescription>
+        <div className="flex justify-between">
+          <div>
+            <CardTitle>John Doe</CardTitle>
+            <CardDescription>
+              Lives in Dhaka, Bangladesh.
+            </CardDescription>
+          </div>
+          <div>
+            <a href="/api/auth/logout">
+              <Button className="bg-red-500" disabled={isLoading}>Logout</Button>
+            </a>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="flex items-center justify-center">
         <Avatar className="w-48 h-48 ring-4 ring-gray-100">
@@ -29,18 +40,7 @@ const User = () => {
       </CardContent>
       <CardFooter className="flex items-center justify-between">
         <Badge variant="secondary">Blood Group: 0(+ve)</Badge>
-        <Button>Call now</Button>
-        {
-          user
-          ?
-          <a href="/api/auth/logout">
-            <Button disabled={isLoading}>Logout</Button>
-          </a>
-          :
-          <a href="/api/auth/login">
-            <Button disabled={isLoading}>Login</Button>
-          </a>
-        }
+        {/* <Button>Call now</Button> */}
       </CardFooter>
     </Card>
   );
