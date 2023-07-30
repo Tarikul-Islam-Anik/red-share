@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Navbar } from "@/components/shared";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,15 +29,21 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}) {
+  }) {
+  
   return (
-    <html lang="en">
+  
+  <html lang="en">
+    <UserProvider>
       <body className={inter.className}>
         <main className="max-w-lg mx-auto relative bg-white">
-          <Navbar />
-          <div className="h-screen p-6">{children}</div>
+            <div className="h-screen p-6">
+              {children}
+            </div>
         </main>
       </body>
-    </html>
+    </UserProvider>
+  </html>
+    
   );
 }

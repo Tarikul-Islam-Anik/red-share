@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Card,
@@ -10,12 +12,25 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { useUser } from "@auth0/nextjs-auth0/client";
 const User = () => {
+  const { user, isLoading } = useUser();
   return (
     <Card>
       <CardHeader>
-        <CardTitle>John Doe</CardTitle>
-        <CardDescription>Lives in Dhaka, Bangladesh.</CardDescription>
+        <div className="flex justify-between">
+          <div>
+            <CardTitle>John Doe</CardTitle>
+            <CardDescription>
+              Lives in Dhaka, Bangladesh.
+            </CardDescription>
+          </div>
+          <div>
+            <a href="/api/auth/logout">
+              <Button className="bg-red-500" disabled={isLoading}>Logout</Button>
+            </a>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="flex items-center justify-center">
         <Avatar className="w-48 h-48 ring-4 ring-gray-100">
@@ -25,7 +40,7 @@ const User = () => {
       </CardContent>
       <CardFooter className="flex items-center justify-between">
         <Badge variant="secondary">Blood Group: 0(+ve)</Badge>
-        <Button>Call now</Button>
+        {/* <Button>Call now</Button> */}
       </CardFooter>
     </Card>
   );
