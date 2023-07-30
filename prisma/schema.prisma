@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+
+model User {
+  id          String    @id @default(uuid())
+  fullName    String
+  role        String    @default("receiver")
+  email       String    @unique
+  phoneNumber String
+  password    String
+  avatar      String // Assuming the image will be stored as a URL or file path
+  address     String? // Optional field for address
+  latLong     String? // Optional field for latitude and longitude
+  requests    Request[] @relation("requestId")
+  donations   Request[] @relation("donationId")
+  bloodType   String    @default("O")
+  donator     Request?  @relation("donatorId", fields: [donatorId], references: [id])
+  donatorId   String?
+}
+
+model Request {
+  id            String   @id @default(uuid())
+  location      String? // Optional field for location
+  latLong       String? // Optional field for latitude and longitude
+  title         String
+  description   String   @db.Text
+  bloodType     String
+  emergency     Boolean
+  bags          Int      @default(1)
+  donators      User[]   @relation("donatorId")
+  status        Boolean
+  requestedBy   String
+  contactNumber String? // Optional field for contact number
+  createdAt     DateTime @default(now())
+  within        DateTime
+
+  request    User?   @relation("requestId", fields: [requestId], references: [id])
+  requestId  String?
+  donation   User?   @relation("donationId", fields: [donationId], references: [id])
+  donationId String?
+}
