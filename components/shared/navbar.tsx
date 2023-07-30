@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 
 const Navigations = [
   {
-    name: "Feeds",
-    href: "/",
+    name: "Feed",
+    href: "/feed",
     icon: DashboardIcon,
   },
   {
