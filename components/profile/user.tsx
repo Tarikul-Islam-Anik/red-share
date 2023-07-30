@@ -13,34 +13,44 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { useUser } from "@auth0/nextjs-auth0/client";
+
+const getInitials = (firstName: string, lastName: string) => {
+  const first = firstName ? firstName.charAt(0).toUpperCase() : "";
+  const last = lastName ? lastName.charAt(0).toUpperCase() : "";
+  return `${first}${last}`;
+};
+
 const User = () => {
   const { user, isLoading } = useUser();
+
   return (
     <Card>
       <CardHeader>
         <div className="flex justify-between">
           <div>
-            <CardTitle>John Doe</CardTitle>
-            <CardDescription>
-              Lives in Dhaka, Bangladesh.
-            </CardDescription>
+            <CardTitle>{user?.given_name}</CardTitle>
+            <CardDescription>Lives in Dhaka, Bangladesh.</CardDescription>
           </div>
           <div>
             <a href="/api/auth/logout">
-              <Button className="bg-red-500" disabled={isLoading}>Logout</Button>
+              <Button variant="destructive" disabled={isLoading}>
+                Logout
+              </Button>
             </a>
           </div>
         </div>
       </CardHeader>
       <CardContent className="flex items-center justify-center">
         <Avatar className="w-48 h-48 ring-4 ring-gray-100">
-          <AvatarImage src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" />
-          <AvatarFallback className="text-4xl">JD</AvatarFallback>
+          <AvatarImage src={user?.picture} />
+          <AvatarFallback className="text-4xl">
+            {user?.family_name}
+          </AvatarFallback>
         </Avatar>
       </CardContent>
       <CardFooter className="flex items-center justify-between">
         <Badge variant="secondary">Blood Group: 0(+ve)</Badge>
-        {/* <Button>Call now</Button> */}
+        <Button>Call now</Button>
       </CardFooter>
     </Card>
   );
