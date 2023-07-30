@@ -1,11 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {
-  DashboardIcon,
-  PlusIcon,
-  PersonIcon,
-  CounterClockwiseClockIcon,
-} from "@radix-ui/react-icons";
+import { DashboardIcon, PlusIcon, PersonIcon } from "@radix-ui/react-icons";
 import {
   Tooltip,
   TooltipContent,
@@ -17,19 +12,14 @@ import { cn } from "@/lib/utils";
 
 const Navigations = [
   {
-    name: "Feeds",
-    href: "/",
+    name: "Feed",
+    href: "/feed",
     icon: DashboardIcon,
   },
   {
     name: "Add request",
     href: "/add-request",
     icon: PlusIcon,
-  },
-  {
-    name: "History",
-    href: "/history",
-    icon: CounterClockwiseClockIcon,
   },
   {
     name: "Profile",
