@@ -26,6 +26,9 @@ const User = () => {
       <CardFooter className="flex items-center justify-between">
         <Badge variant="secondary">Blood Group: 0(+ve)</Badge>
         <Button>Call now</Button>
+        <a href="/api/auth/login">
+          <Button>Login</Button>
+        </a>
       </CardFooter>
     </Card>
   );
