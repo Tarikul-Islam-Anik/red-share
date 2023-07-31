@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Card,
@@ -12,9 +10,9 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import { useUser } from "@auth0/nextjs-auth0/client";
-const User = () => {
-  const { user, isLoading } = useUser();
+import { UserProfile } from "@auth0/nextjs-auth0/client";
+
+const User = ({user, isLoading}:{user?: UserProfile, isLoading: boolean}) => {
   const { name, picture } = user || {};
   console.log(user);
   return (
@@ -22,7 +20,7 @@ const User = () => {
       <CardHeader>
         <div className="flex justify-between">
           <div>
-            <CardTitle>{name || undefined}</CardTitle>
+            <CardTitle>{name}</CardTitle>
             <CardDescription>
               Lives in Dhaka, Bangladesh.
             </CardDescription>

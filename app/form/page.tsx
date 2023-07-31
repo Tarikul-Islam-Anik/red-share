@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function Register() {
+
   return (
     <>
       <div className="h-screen grid max-w-none grid-cols-1">
