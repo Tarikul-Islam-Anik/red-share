@@ -11,13 +11,17 @@ import {
   SelectWithLabel,
 } from "../shared";
 import GoogleIcon from "../icon/google-icon";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserRegFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserRegForm({ className, ...props }: UserRegFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isDonor, setIsDonor] = React.useState<boolean>(false);
-
+  const [userInfo, setUserInfo] = React.useState<Object>({});
+  const { user } = useUser();
+  const { name, email } = user || {};
+  
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
@@ -37,9 +41,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               placeholder="Your name"
               type="text"
               autoCapitalize="true"
-              autoComplete="name"
               autoCorrect="off"
               disabled={isLoading}
+              value={name || ""}
               required
             />
             <InputWithLabel

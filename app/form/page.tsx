@@ -1,9 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/auth/user-registration-form";
+import { UserRegForm } from "@/components/reg-form/user-reg-form";
 
 export const metadata: Metadata = {
   title: "Authentication - Blood Share",
@@ -24,7 +21,7 @@ export default function Register() {
               Complete all the fields below to complete your registration. 
             </p>
           </div>
-          <UserAuthForm />
+          <UserRegForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link

@@ -15,14 +15,14 @@ import { Badge } from "../ui/badge";
 import { useUser } from "@auth0/nextjs-auth0/client";
 const User = () => {
   const { user, isLoading } = useUser();
-  const { name, picture, email } = user || {};
+  const { name, picture } = user || {};
   console.log(user);
   return (
     <Card>
       <CardHeader>
         <div className="flex justify-between">
           <div>
-            <CardTitle>{name}</CardTitle>
+            <CardTitle>{name || undefined}</CardTitle>
             <CardDescription>
               Lives in Dhaka, Bangladesh.
             </CardDescription>
