@@ -31,7 +31,7 @@ const Navigations = [
 const Navbar = () => {
   return (
     <TooltipProvider delayDuration={300}>
-      <header className="px-2 py-4 border-t bottom-0 absolute w-full">
+      <header className="px-2 py-4 border-t bottom-0 absolute w-full bg-white">
         <nav>
           <ul className="flex justify-around">
             {Navigations.map((nav, index) => (
