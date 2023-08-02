@@ -7,6 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 let requests = [
   {
+    id: 1,
     title: "Urgent Blood Donation",
     description: "Looking for blood donors for a critical surgery.",
     urgency: true,
@@ -19,6 +20,7 @@ let requests = [
     createdAt: "2023-07-28 10:00:00",
   },
   {
+    id: 2,
     title: "Blood Donors Needed",
     description: "Blood donation drive at the local community center.",
     urgency: false,
@@ -31,6 +33,7 @@ let requests = [
     createdAt: "2023-07-28 14:30:00",
   },
   {
+    id: 3,
     title: "Emergency Blood Request",
     description: "Seeking blood donors for an accident victim.",
     urgency: true,
@@ -43,6 +46,7 @@ let requests = [
     createdAt: "2023-07-28 18:15:00",
   },
   {
+    id: 4,
     title: "Blood Donors for Cancer Patient",
     description: "A cancer patient needs blood transfusion support.",
     urgency: false,
@@ -55,6 +59,7 @@ let requests = [
     createdAt: "2023-07-27 08:00:00",
   },
   {
+    id: 5,
     title: "Urgent Plasma Donation",
     description: "Looking for plasma donors for a COVID-19 patient.",
     urgency: true,
@@ -67,6 +72,7 @@ let requests = [
     createdAt: "2023-07-26 22:45:00",
   },
   {
+    id: 6,
     title: "O+ Blood Donors Needed",
     description: "Urgently seeking O+ blood donors.",
     urgency: false,
@@ -79,6 +85,7 @@ let requests = [
     createdAt: "2023-07-29 09:30:00",
   },
   {
+    id: 7,
     title: "Emergency O+ Blood Request",
     description: "O+ blood required for a patient in critical condition.",
     urgency: true,
@@ -100,7 +107,7 @@ const Feeds = () => {
   return (
     <Tabs
       defaultValue="blood-group"
-      className="w-[300px] sm:w-[350px] mx-auto"
+      className="w-[300px] sm:w-[350px] mx-auto absolute top-24 inset-x-6"
       onValueChange={(value) => {
         if (value === "blood-group") {
           setFilter(requests.filter((request) => request.bloodType === "O+"));
@@ -118,25 +125,25 @@ const Feeds = () => {
       </TabsList>
 
       <TabsContent value="blood-group">
-        <ScrollArea className="h-[83vh]" hideScrollbar>
-          {filter.map((request, index) => (
-            <RequestCard className="my-4" key={index} {...request} />
+        <ScrollArea className="h-[75vh]" hideScrollbar>
+          {filter.map((request) => (
+            <RequestCard className="my-4" key={request.id} {...request} />
           ))}
         </ScrollArea>
       </TabsContent>
 
       <TabsContent value="urgent">
-        <ScrollArea className="h-[83vh]" hideScrollbar>
-          {filter.map((request, index) => (
-            <RequestCard className="my-4" key={index} {...request} />
+        <ScrollArea className="h-[75vh]" hideScrollbar>
+          {filter.map((request) => (
+            <RequestCard className="my-4" key={request.id} {...request} />
           ))}
         </ScrollArea>
       </TabsContent>
 
       <TabsContent value="show-all">
-        <ScrollArea className="h-[83vh]" hideScrollbar>
-          {filter.map((request, index) => (
-            <RequestCard className="my-4" key={index} {...request} />
+        <ScrollArea className="h-[75vh]" hideScrollbar>
+          {filter.map((request) => (
+            <RequestCard className="my-4" key={request.id} {...request} />
           ))}
         </ScrollArea>
       </TabsContent>
