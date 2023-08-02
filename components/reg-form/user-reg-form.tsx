@@ -10,14 +10,18 @@ import {
   RadioGroupWithLabel,
   SelectWithLabel,
 } from "../shared";
-import GoogleIcon from "../icon/google-icon";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { initialValueUserInfo } from "@/lib/initialValues";
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserRegFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserRegForm({ className, ...props }: UserRegFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isDonor, setIsDonor] = React.useState<boolean>(false);
-
+  const [userInfo, setUserInfo] = React.useState<object>(initialValueUserInfo);
+  const { user } = useUser();
+  const { name, email } = user || {};
+  
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
@@ -37,9 +41,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               placeholder="Your name"
               type="text"
               autoCapitalize="true"
-              autoComplete="name"
               autoCorrect="off"
               disabled={isLoading}
+              value={name || ""}
               required
             />
             <InputWithLabel
@@ -93,30 +97,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             )}
             <InputWithLabel type="file" label="Upload your photo" />
           </div>
-          <Button disabled={isLoading}>
+          <Button disabled={isLoading} className="bg-red-500">
             {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-            Sign In with Email
+            Save & Continue
           </Button>
         </div>
       </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-      </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
-          <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <GoogleIcon className="mr-2 h-3.5 w-3.5" />
-        )}{" "}
-        Continue with Google
-      </Button>
     </div>
   );
 }

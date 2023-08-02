@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Card,
@@ -12,15 +10,17 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import { useUser } from "@auth0/nextjs-auth0/client";
-const User = () => {
-  const { user, isLoading } = useUser();
+import { UserProfile } from "@auth0/nextjs-auth0/client";
+
+const User = ({user, isLoading}:{user?: UserProfile, isLoading: boolean}) => {
+  const { name, picture } = user || {};
+  console.log(user);
   return (
     <Card>
       <CardHeader>
         <div className="flex justify-between">
           <div>
-            <CardTitle>John Doe</CardTitle>
+            <CardTitle>{name}</CardTitle>
             <CardDescription>
               Lives in Dhaka, Bangladesh.
             </CardDescription>
@@ -34,7 +34,7 @@ const User = () => {
       </CardHeader>
       <CardContent className="flex items-center justify-center">
         <Avatar className="w-48 h-48 ring-4 ring-gray-100">
-          <AvatarImage src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" />
+          <AvatarImage src={picture || undefined} />
           <AvatarFallback className="text-4xl">JD</AvatarFallback>
         </Avatar>
       </CardContent>
